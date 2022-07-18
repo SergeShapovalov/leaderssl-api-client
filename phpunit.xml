@@ -1,0 +1,5 @@
+<testsuites>
+    <testsuite name="LeaderSSL Unit Tests">
+        <directory>tests/</directory>
+    </testsuite>
+</testsuites>
