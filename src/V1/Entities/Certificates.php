@@ -13,7 +13,7 @@ class Certificates extends Entity
      */
     public function status(int $certificateId)
     {
-        return $this->httpClient->request("ssl_certificates/{$certificateId}/status", "GET");
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/status", "GET");
     }
 
     /**
@@ -24,7 +24,7 @@ class Certificates extends Entity
      */
     public function download(int $certificateId)
     {
-        return $this->httpClient->request("ssl_certificates/{$certificateId}/download", "GET");
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/download", "GET");
     }
 
     /**
@@ -34,7 +34,7 @@ class Certificates extends Entity
      */
     public function list()
     {
-        return $this->httpClient->request('ssl_certificates');
+        return $this->getHttpClient()->request('ssl_certificates');
     }
 
 }

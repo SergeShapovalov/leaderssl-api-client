@@ -11,6 +11,6 @@ class Balance extends Entity
      */
     public function get()
     {
-        return $this->httpClient->request('billing/balance');
+        return $this->getHttpClient()->request('billing/balance');
     }
 }

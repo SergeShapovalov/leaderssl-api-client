@@ -13,7 +13,7 @@ class Orders extends Entity
      */
     public function preorder(array $query)
     {
-        return $this->httpClient->request('preorder', 'POST', $query);
+        return $this->getHttpClient()->request('preorder', 'POST', $query);
     }
 
     /**
@@ -24,7 +24,7 @@ class Orders extends Entity
      */
     public function getPreorders(array $query = [])
     {
-        return $this->httpClient->request('preorders', 'POST', $query);
+        return $this->getHttpClient()->request('preorders', 'POST', $query);
     }
 
     /**
@@ -35,7 +35,7 @@ class Orders extends Entity
      */
     public function getPreorderById(int $orderId)
     {
-        return $this->httpClient->request("preorders/{$orderId}");
+        return $this->getHttpClient()->request("preorders/{$orderId}");
     }
 
     /**
@@ -46,7 +46,7 @@ class Orders extends Entity
      */
     public function getPreorderIssue(int $orderId)
     {
-        return $this->httpClient->request("preorders/{$orderId}/issue");
+        return $this->getHttpClient()->request("preorders/{$orderId}/issue");
     }
 
     /**
@@ -57,7 +57,7 @@ class Orders extends Entity
      */
     public function new(array $query)
     {
-        return $this->httpClient->request('order', 'POST', $query);
+        return $this->getHttpClient()->request('order', 'POST', $query);
     }
 
 }

@@ -10,9 +10,13 @@ class Entity
     /**
      * HTTP Client which using for API requests
      */
-    public $httpClient;
+    protected $httpClient;
 
     public function __construct(HttpClient $httpClient) {
         $this->httpClient = $httpClient;
+    }
+
+    public function getHttpClient() {
+        return $this->httpClient;
     }
 }

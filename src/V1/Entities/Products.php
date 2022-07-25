@@ -23,6 +23,6 @@ class Products extends Entity
             ];
         }
 
-        return $this->httpClient->request('products', 'GET', $queryParams, $header);
+        return $this->getHttpClient()->request('products', 'GET', $queryParams, $header);
     }
 }

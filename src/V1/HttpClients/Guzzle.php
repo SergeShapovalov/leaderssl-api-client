@@ -3,7 +3,6 @@
 namespace Fozzy\LeaderSSL\Api\V1\HttpClients;
 
 use Fozzy\LeaderSSL\Api\Exception\InvalidRequest;
-use Fozzy\LeaderSSL\Api\V1\HttpClients\HttpClient;
 use GuzzleHttp\Client;
 use Fozzy\LeaderSSL\Api\Exception\InvalidAuthClient;
 

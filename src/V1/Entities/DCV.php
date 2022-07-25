@@ -13,7 +13,7 @@ class DCV extends Entity
      */
     public function emails(string $domain)
     {
-        return $this->httpClient->request('dcv_emails', 'POST', ['domain_name' => $domain]);
+        return $this->getHttpClient()->request('dcv_emails', 'POST', ['domain_name' => $domain]);
     }
 
     /**
@@ -24,7 +24,7 @@ class DCV extends Entity
      */
     public function status(int $certificateId)
     {
-        return $this->httpClient->request("ssl_certificates/{$certificateId}/dcv");
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/dcv");
     }
 
     /**
@@ -36,7 +36,7 @@ class DCV extends Entity
      */
     public function change(int $certificateId, string $dcvMethod)
     {
-        return $this->httpClient->request("ssl_certificates/{$certificateId}/change_dcv", "POST", ['email' => $dcvMethod]);
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/change_dcv", "POST", ['email' => $dcvMethod]);
     }
 
     /**
@@ -47,7 +47,7 @@ class DCV extends Entity
      */
     public function reSend(int $certificateId)
     {
-        return $this->httpClient->request("ssl_certificates/{$certificateId}/resend_dcv");
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/resend_dcv");
     }
 
 }
