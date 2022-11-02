@@ -2,33 +2,40 @@
 
 namespace Fozzy\LeaderSSL\Api\V1\Entities;
 
+use GuzzleHttp\Psr7\Utils;
+
 class Certificates extends Entity
 {
-
     /**
-     * Get Certificate status by id
+     * Get Certificate status by ID
      *
      * @param int $certificateId
+     *
      * @return mixed
      */
     public function status(int $certificateId)
     {
-        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/status", "GET");
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/status");
     }
 
     /**
-     * Download Certificate by id
+     * Download Certificate by ID
      *
      * @param int $certificateId
+     * @param string $filePath
+     *
      * @return mixed
      */
-    public function download(int $certificateId)
+    public function download(int $certificateId, string $filePath)
     {
-        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/download", "GET");
+        $resource = Utils::tryFopen($filePath, 'w');
+        $options = ['sink' => $resource];
+
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/download", 'GET', $options);
     }
 
     /**
-     * Get all ssl certificate
+     * Get all SSL certificates
      *
      * @return mixed
      */
@@ -36,5 +43,4 @@ class Certificates extends Entity
     {
         return $this->getHttpClient()->request('ssl_certificates');
     }
-
 }

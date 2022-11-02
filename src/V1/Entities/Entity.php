@@ -6,17 +6,32 @@ use Fozzy\LeaderSSL\Api\V1\HttpClients\HttpClient;
 
 class Entity
 {
-
     /**
      * HTTP Client which using for API requests
+     *
+     * @var \Fozzy\LeaderSSL\Api\V1\HttpClients\HttpClient
      */
     protected $httpClient;
 
-    public function __construct(HttpClient $httpClient) {
+    /**
+     * Object constructor
+     *
+     * @param HttpClient $httpClient
+     *
+     * @return void
+     */
+    public function __construct(HttpClient $httpClient)
+    {
         $this->httpClient = $httpClient;
     }
 
-    public function getHttpClient() {
+    /**
+     * Return HTTP Client
+     *
+     * @return \Fozzy\LeaderSSL\Api\V1\HttpClients\HttpClient|null
+     */
+    public function getHttpClient(): ?HttpClient
+    {
         return $this->httpClient;
     }
 }

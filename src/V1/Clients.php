@@ -2,73 +2,116 @@
 
 namespace Fozzy\LeaderSSL\Api\V1;
 
-
-use Fozzy\LeaderSSL\Api\V1\HttpClients\HttpClient;
 use Fozzy\LeaderSSL\Api\V1\Entities\DCV;
 use Fozzy\LeaderSSL\Api\V1\Entities\Orders;
 use Fozzy\LeaderSSL\Api\V1\Entities\Balance;
 use Fozzy\LeaderSSL\Api\V1\Entities\Products;
 use Fozzy\LeaderSSL\Api\V1\Entities\Certificates;
-
+use Fozzy\LeaderSSL\Api\V1\HttpClients\HttpClient;
 
 class Clients
 {
     /**
      * Default endpoint for API v1
+     *
+     * @var string
      */
     const DEFAULT_API_URL = 'https://api.leaderssl.com/api/v1/';
 
     /**
-     * @var Products
+     * Products class
+     *
+     * @var \Fozzy\LeaderSSL\Api\V1\Entities\Products
      */
     public $products;
 
     /**
-     * @var Orders
+     * Orders class
+     *
+     * @var \Fozzy\LeaderSSL\Api\V1\Entities\Orders
      */
     public $orders;
 
     /**
-     * @var Certificates
+     * Certificates class
+     *
+     * @var \Fozzy\LeaderSSL\Api\V1\Entities\Certificates
      */
     public $certificates;
 
     /**
-     * @var DCV
+     * DCV class
+     *
+     * @var \Fozzy\LeaderSSL\Api\V1\Entities\DCV
      */
     public $dcv;
 
     /**
-     * @var Balance
+     * Balance class
+     *
+     * @var \Fozzy\LeaderSSL\Api\V1\Entities\Balance
      */
     public $balance;
 
-
     /**
-     * @var HttpClient
+     * HTTP Client class
+     *
+     * @var \Fozzy\LeaderSSL\Api\V1\HttpClients\HttpClient
      */
     public $httpClient;
 
+    /**
+     * Public token after auth
+     *
+     * @var string
+     */
+    public $publicToken;
+
+    /**
+     * Object constructor
+     *
+     * @param HttpClient $httpClient
+     * @return void
+     */
     public function __construct(HttpClient $httpClient)
     {
         $this->httpClient = $httpClient;
     }
 
     /**
-     * @return Products
+     * Return public token
+     *
+     * @return string
      */
-    public function products() : Products
+    public function getPublicToken(): string
+    {
+        if (!$this->publicToken) {
+            $this->publicToken = $this->httpClient->publicToken;
+        }
+
+        return $this->publicToken;
+    }
+
+    /**
+     * Return products object
+     *
+     * @return \Fozzy\LeaderSSL\Api\V1\Entities\Products
+     */
+    public function products(): Products
     {
         if (!$this->products) {
             $this->products = new Products($this->httpClient);
         }
+
         return $this->products;
     }
 
     /**
-     * @return Orders
+     * Return orders object
+     *
+     * @return \Fozzy\LeaderSSL\Api\V1\Entities\Orders
      */
-    public function orders() : Orders
+    public function orders(): Orders
     {
         if (!$this->orders) {
             $this->orders = new Orders($this->httpClient);
@@ -78,9 +121,11 @@ class Clients
     }
 
     /**
-     * @return DCV
+     * Return DCV object
+     *
+     * @return \Fozzy\LeaderSSL\Api\V1\Entities\DCV
      */
-    public function dcv() : DCV
+    public function dcv(): DCV
     {
         if (!$this->dcv) {
             $this->dcv = new DCV($this->httpClient);
@@ -90,14 +135,30 @@ class Clients
     }
 
     /**
-     * @return Certificates
+     * Return certificates object
+     *
+     * @return \Fozzy\LeaderSSL\Api\V1\Entities\Certificates
      */
-    public function certificates() : Certificates
+    public function certificates(): Certificates
     {
         if (!$this->certificates) {
             $this->certificates = new Certificates($this->httpClient);
         }
 
         return $this->certificates;
+    }
+
+    /**
+     * Return balance object
+     *
+     * @return \Fozzy\LeaderSSL\Api\V1\Entities\Balance
+     */
+    public function balance(): Balance
+    {
+        if (!$this->balance) {
+            $this->balance = new Balance($this->httpClient);
+        }
+
+        return $this->balance;
     }
 }

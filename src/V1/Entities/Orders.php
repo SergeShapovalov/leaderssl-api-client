@@ -4,33 +4,35 @@ namespace Fozzy\LeaderSSL\Api\V1\Entities;
 
 class Orders extends Entity
 {
-
     /**
      * Create preorder
      *
-     * @param array $query
+     * @param mixed[] $data
+     *
      * @return mixed
      */
-    public function preorder(array $query)
+    public function preorder(array $data)
     {
-        return $this->getHttpClient()->request('preorder', 'POST', $query);
+        return $this->getHttpClient()->request('preorder', 'POST', ['query' => $data]);
     }
 
     /**
      * Get preorder
      *
-     * @param array $query
+     * @param mixed[] $data
+     *
      * @return mixed
      */
-    public function getPreorders(array $query = [])
+    public function getPreorders(array $data = [])
     {
-        return $this->getHttpClient()->request('preorders', 'POST', $query);
+        return $this->getHttpClient()->request('preorders', 'POST', ['query' => $data]);
     }
 
     /**
      * Get preorder By Id
      *
      * @param int $orderId
+     *
      * @return mixed
      */
     public function getPreorderById(int $orderId)
@@ -42,6 +44,7 @@ class Orders extends Entity
      * Get preorder Issue byId
      *
      * @param int $orderId
+     *
      * @return mixed
      */
     public function getPreorderIssue(int $orderId)
@@ -53,11 +56,11 @@ class Orders extends Entity
      * Create new Order/Cert
      *
      * @param array $query
+     *
      * @return mixed
      */
-    public function new(array $query)
+    public function new(array $data)
     {
-        return $this->getHttpClient()->request('order', 'POST', $query);
+        return $this->getHttpClient()->request('order', 'POST', ['query' => $data]);
     }
-
 }

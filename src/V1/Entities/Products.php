@@ -9,10 +9,11 @@ class Products extends Entity
      *
      * @param bool $ssl
      * @param float $recommendPrices
-     * @param array $header
+     * @param string[] $headers
+     *
      * @return mixed
      */
-    public function list(bool $ssl, float $recommendPrices, array $header = [])
+    public function list(bool $ssl, float $recommendPrices, array $headers = [])
     {
         $queryParams = [];
 
@@ -23,6 +24,6 @@ class Products extends Entity
             ];
         }
 
-        return $this->getHttpClient()->request('products', 'GET', $queryParams, $header);
+        return $this->getHttpClient()->request('products', 'GET', ['query' => $queryParams, 'headers' => $headers]);
     }
 }
